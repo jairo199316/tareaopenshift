@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:q="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+		<h:form id="form2" prependId="false"
+			style="display: flex; justify-content:center; align-items:center; flex-direction:column;">
+			<h1>Crear Programa</h1>
+			<h:panelGrid columns="2" id="contenedor">
+
+				<p:outputLabel value="#{msj['facultad.facultad']}" for="facultad" />
+
+				<p:selectOneMenu converter="#{facultadConverter}" id="facultad"
+					value="#{programaWeb.facultadSeleccionada}">
+					<f:selectItems value="#{programaWeb.facultades}" var="fac"
+						itemValue="#{fac}" itemLabel="#{fac.nombre}" />
+				</p:selectOneMenu>
+
+
+				<p:outputLabel value="#{msj['facultad.programa']}" for="nombre" />
+				<h:inputText value="#{programaWeb.nombre}"
+					p:placeholder="#{msj['facultad.programa']}" id="nombre"
+					required="true" />
+
+				<p:outputLabel value="#{msj['facultad.idPrograma']}" for="idPrograma" />
+				<h:inputText value="#{programaWeb.idPrograma}"
+					p:placeholder="#{msj['facultad.idPrograma']}" id="idPrograma"
+					required="true" />
+
+			</h:panelGrid>
+			<p:commandButton action="#{programaWeb.crearPrograma()}"
+				value="#{msj['botones.crear']}" update="form2"  id="idBoton"/>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

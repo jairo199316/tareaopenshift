@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:q="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form id="form4" prependId="false"
+			style="display: flex; justify-content:center; align-items:center; flex-direction:column;">
+			<h1>Pagina Prueba Login</h1>
+			<h:panelGrid columns="2" id="contenedor">
+
+				<p:outputLabel rendered="#{pruebaLoginWeb.renderPrograma()}"
+					value="#{msj['facultad.programa']}" />
+				<p:selectOneMenu rendered="#{pruebaLoginWeb.renderPrograma()}"
+					converter="#{programaConverter}" id="comboPrograma"
+					value="#{pruebaLoginWeb.programa}">
+					<f:selectItems value="#{pruebaLoginWeb.programas}" var="prog"
+						itemValue="#{prog}" itemLabel="#{prog.nombrePrograma}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel rendered="#{pruebaLoginWeb.renderFacultad()}"
+					value="#{msj['facultad.facultad']}" />
+				<p:selectOneMenu rendered="#{pruebaLoginWeb.renderFacultad()}"
+					converter="#{facultadConverter}" id="comboFacultad"
+					value="#{pruebaLoginWeb.facultad}">
+					<f:selectItems value="#{pruebaLoginWeb.facultades}" var="fac"
+						itemValue="#{fac}" itemLabel="#{fac.nombre}" />
+				</p:selectOneMenu>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

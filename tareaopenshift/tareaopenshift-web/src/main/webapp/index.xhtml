@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:q="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+		<h:form id="form2" prependId="false"
+			style="display: flex; justify-content:center; align-items:center; flex-direction:column;">
+			<h1>login</h1>
+			<h:panelGrid columns="2" id="contenedor">
+
+				<p:outputLabel value="#{msj['usuario.usuario']}" for="usuario" />
+				<p:inputText value="#{SesionBean.user}" id="usuario"
+					p:placeholder="#{msj['usuario.usuario']}" required="true" />
+
+				<p:outputLabel value="#{msj['usuario.contrasenia']}" for="password" />
+				<h:inputSecret value="#{SesionBean.password}" id="password"
+					required="true" />
+
+			</h:panelGrid>
+			<p:commandButton action="#{SesionBean.login()}"
+				value="#{msj['botones.iniciarSesion']}" update="form2" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

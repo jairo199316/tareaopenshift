@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:q="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form id="form3" prependId="false" style="display: flex; justify-content:center; align-items:center; flex-direction:column;">
+			<h1>Registro usuario</h1>
+			<p:message for="cedula" style="color:red" />
+			<p:message for="nombre" style="color:red" />
+			<p:message for="apellido" style="color:red" />
+			<h:panelGrid columns="2" id="cotenedor">
+
+				<p:outputLabel value="#{msj['usuario.nombre']}" for="nombre" />
+				<p:inputText required="true" value="#{usuarioWeb.nombre}"
+					id="nombre" p:placeholder="#{msj['usuario.nombre']}"
+					validator="validador" />
+
+				<p:outputLabel value="#{msj['usuario.apellido']}" for="apellido" />
+				<p:inputText required="true" value="#{usuarioWeb.apellido}"
+					id="apellido" p:placeholder="#{msj['usuario.apellido']}"
+					validator="validador" />
+
+				<p:outputLabel value="#{msj['usuario.cedula']}" for="cedula" />
+				<p:inputText required="true" value="#{usuarioWeb.id}" id="cedula"
+					p:placeholder="#{msj['usuario.cedula']}" validator="validador" />
+
+				<p:outputLabel value="#{msj['usuario.usuario']}" for="usuario" />
+				<p:inputText value="#{usuarioWeb.user}" id="usuario"
+					p:placeholder="#{msj['usuario.usuario']}" required="true" />
+
+				<p:outputLabel value="#{msj['usuario.contrasenia']}"
+					for="contrasenia" />
+				<h:inputSecret value="#{usuarioWeb.password}" id="contrasenia"
+					p:placeholder="#{msj['usuario.contrasenia']}" required="true" />
+
+				<p:outputLabel value="#{msj['usuario.tipoUsuario']}"
+					for="comboUsuario" />
+
+
+				<p:selectOneMenu id="comboUsuario" required="true"
+					value="#{usuarioWeb.usuarioSeleccionado}">
+
+
+					<f:selectItem itemValue="0" itemLabel="Coordinador" />
+					<f:selectItem itemValue="1" itemLabel="Decano" />
+
+					<f:ajax event="change" render="panelGroup" execute="@this"
+						listener="#{usuarioWeb.llenarListas()}" />
+
+
+				</p:selectOneMenu>
+
+
+
+
+				<p:outputLabel value="#{msj['usuario.area']}" />
+				<h:panelGroup id="panelGroup">
+					<p:selectOneMenu rendered="#{usuarioWeb.comboProgama()}"
+						converter="#{programaConverter}" id="comboPrograma"
+						value="#{usuarioWeb.programaSelecccionado}">
+						<f:selectItems value="#{usuarioWeb.programa}" var="prog"
+							itemValue="#{prog}" itemLabel="#{prog.nombrePrograma}" />
+					</p:selectOneMenu>
+
+					<p:selectOneMenu rendered="#{usuarioWeb.comboFacultad()}"
+						converter="#{facultadConverter}" id="comboFacultad"
+						value="#{usuarioWeb.facultadSelecccionado}">
+						<f:selectItems value="#{usuarioWeb.facultad}" var="fac"
+							itemValue="#{fac}" itemLabel="#{fac.nombre}" />
+					</p:selectOneMenu>
+				</h:panelGroup>
+
+			</h:panelGrid>
+			<p:commandButton action="#{usuarioWeb.crear()}"
+				value="#{msj['botones.crear']}" update="form3" />
+		</h:form>
+
+
+
+
+
+	</ui:define>
+</ui:composition>
