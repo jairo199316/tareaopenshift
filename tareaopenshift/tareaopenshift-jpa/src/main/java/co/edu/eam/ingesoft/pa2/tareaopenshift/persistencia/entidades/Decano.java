@@ -1,4 +1,4 @@
-/**
+	/**
  * 
  */
 package co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades;

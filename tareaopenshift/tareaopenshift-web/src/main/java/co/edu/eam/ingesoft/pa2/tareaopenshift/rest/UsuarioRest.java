@@ -10,9 +10,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import co.edu.eam.ingesoft.pa2.tareaopenshift.bos.UsuarioEJB;
+import co.edu.eam.ingesoft.pa2.tareaopenshift.dto.RespuestaDTO;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.excepciones.ExcepcionNegocio;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades.Usuario;
-import co.edu.eam.ingesoft.pa2.tareaopenshift.respuestadto.RespuestaDTO;
 
 @Path("/usuario")
 public class UsuarioRest {

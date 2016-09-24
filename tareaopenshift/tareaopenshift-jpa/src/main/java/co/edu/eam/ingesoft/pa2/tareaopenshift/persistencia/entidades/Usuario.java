@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
- * @author Alejandro
+ * @author JAIRO
  *
  */
 @Entity
@@ -43,12 +43,10 @@ public class Usuario implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	// Constructor vacio
 	public Usuario() {
 		super();
 	}
 
-	// Constructor
 	public Usuario(int id, String nombre, String apellido, String usuario, String password) {
 		super();
 		this.id = id;
@@ -58,7 +56,6 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	// Accesores y modificadores
 	public int getId() {
 		return id;
 	}

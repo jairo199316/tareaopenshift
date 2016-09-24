@@ -3,12 +3,11 @@
  */
 package co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades;
 
-
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,15 +18,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PreguntasEval")
+@IdClass(value = PregEvalPK.class)
 public class PregEval implements Serializable {
-	
+
 	@Id
-	@Column(name="idPreguntasEval")
-	private int idPregEval;
-	
-	@Column(name = "idPregunta")
+	@ManyToOne
+	@JoinColumn(name = "idPregunta")
 	private Pregunta idPregunta;
-	
+
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "idEvaluacion")
 	private Evaluacion idEvaluacion;
@@ -38,10 +37,10 @@ public class PregEval implements Serializable {
 	}
 
 	// Constructor
-	public PregEval(Pregunta idPregunta, Evaluacion idEvaluacion) {
+	public PregEval(Pregunta idPregunta, Evaluacion idEvalua) {
 		super();
 		this.idPregunta = idPregunta;
-		this.idEvaluacion = idEvaluacion;
+		this.idEvaluacion = idEvalua;
 	}
 
 	// Accesores y modificadores
@@ -57,8 +56,8 @@ public class PregEval implements Serializable {
 		return idEvaluacion;
 	}
 
-	public void setIdEvaluacion(Evaluacion idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setIdEvaluacion(Evaluacion idEvalua) {
+		this.idEvaluacion = idEvalua;
 	}
 
 }

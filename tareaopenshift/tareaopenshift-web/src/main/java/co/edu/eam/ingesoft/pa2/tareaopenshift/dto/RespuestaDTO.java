@@ -1,4 +1,4 @@
-package co.edu.eam.ingesoft.pa2.tareaopenshift.respuestadto;
+package co.edu.eam.ingesoft.pa2.tareaopenshift.dto;
 
 public class RespuestaDTO {
 
